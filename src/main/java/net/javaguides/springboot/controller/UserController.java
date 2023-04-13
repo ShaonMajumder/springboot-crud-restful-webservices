@@ -1,5 +1,6 @@
 package net.javaguides.springboot.controller;
 
+import java.sql.Timestamp;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -40,6 +41,7 @@ public class UserController {
 	// create user
 	@PostMapping
 	public User createUser(@RequestBody User user) {
+		user.setCreatedAt(new Timestamp(System.currentTimeMillis()));
 		return this.userRepository.save(user);
 	}
 	
