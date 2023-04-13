@@ -21,7 +21,7 @@ import org.mindrot.jbcrypt.BCrypt;
 
 @RestController
 @RequestMapping("/api/users")
-public class UserController {
+public class ApiController {
 
 	@Autowired
 	private UserRepository userRepository;
