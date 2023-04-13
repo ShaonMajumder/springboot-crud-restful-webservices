@@ -1,33 +1,38 @@
 package BACKEND.Models;
 
 import jakarta.persistence.*;
+
 import java.sql.Timestamp;
 
 @Entity
 @Table(name = "users")
+@NamedQuery(
+        name = "findUserByEmail",
+        query = "SELECT u FROM User u WHERE u.email = :email"
+)
 public class User {
-	
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "id")
-	private int id;
 
-	@Column(name = "username")
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id")
+    private int id;
+
+    @Column(name = "username", nullable = false)
     private String username;
 
-	@Column(name = "password")
+    @Column(name = "password", nullable = false)
     private String password;
-	
-	@Column(name = "first_name")
-	private String firstName;
-	
-	@Column(name = "last_name")
-	private String lastName;
-	
-	@Column(name = "email")
-	private String email;
 
-	@Column(name = "created_at", nullable = false, updatable = false, columnDefinition = "TIMESTAMP DEFAULT CURRENT_TIMESTAMP")
+    @Column(name = "email", nullable = false)
+    private String email;
+
+    @Column(name = "first_name")
+    private String firstName;
+
+    @Column(name = "last_name")
+    private String lastName;
+
+    @Column(name = "created_at", nullable = false, updatable = false)
     private Timestamp createdAt;
 
     @Column(name = "updated_at")
@@ -35,26 +40,31 @@ public class User {
 
     @Column(name = "deleted_at")
     private Timestamp deletedAt;
-	
-	public User() {
-		
-	}
-	
-	public User(String firstName, String lastName, String email) {
-		super();
-		this.firstName = firstName;
-		this.lastName = lastName;
-		this.email = email;
-	}
-	
-	public long getId() {
-		return id;
-	}
-	public void setId(int id) {
-		this.id = id;
-	}
 
-	public String getUsername() {
+    // Constructors
+    public User() {
+
+    }
+
+    public User(String username, String password, String email, String firstName, String lastName) {
+        this.username = username;
+        this.password = password;
+        this.email = email;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.createdAt = new Timestamp(System.currentTimeMillis());
+    }
+
+    // Getters and Setters
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public String getUsername() {
         return username;
     }
 
@@ -69,27 +79,32 @@ public class User {
     public void setPassword(String password) {
         this.password = password;
     }
-	
-	public String getFirstName() {
-		return firstName;
-	}
-	public void setFirstName(String firstName) {
-		this.firstName = firstName;
-	}
-	public String getLastName() {
-		return lastName;
-	}
-	public void setLastName(String lastName) {
-		this.lastName = lastName;
-	}
-	public String getEmail() {
-		return email;
-	}
-	public void setEmail(String email) {
-		this.email = email;
-	}
 
-	public Timestamp getCreatedAt() {
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public String getFirstName() {
+        return firstName;
+    }
+
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
+
+    public String getLastName() {
+        return lastName;
+    }
+
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
+    }
+
+    public Timestamp getCreatedAt() {
         return createdAt;
     }
 

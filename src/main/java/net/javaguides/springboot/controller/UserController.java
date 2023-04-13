@@ -14,9 +14,10 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import net.javaguides.springboot.entity.User;
+import BACKEND.Models.User;
 import net.javaguides.springboot.exception.ResourceNotFoundException;
 import net.javaguides.springboot.repository.UserRepository;
+import org.mindrot.jbcrypt.BCrypt;
 
 @RestController
 @RequestMapping("/api/users")
@@ -42,6 +43,7 @@ public class UserController {
 	@PostMapping
 	public User createUser(@RequestBody User user) {
 		user.setCreatedAt(new Timestamp(System.currentTimeMillis()));
+		user.setPassword(BCrypt.hashpw(user.getPassword(), BCrypt.gensalt() ));
 		return this.userRepository.save(user);
 	}
 	
