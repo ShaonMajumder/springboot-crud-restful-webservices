@@ -1,8 +1,8 @@
 package BACKEND.Controllers;
 
-import BACKEND.Exception.ResourceNotFoundException;
+import net.javaguides.springboot.exception.ResourceNotFoundException;
 import BACKEND.Models.User;
-import BACKEND.Repository.UserRepository;
+import net.javaguides.springboot.repository.UserRepository;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
 import org.springframework.beans.factory.annotation.Autowired;

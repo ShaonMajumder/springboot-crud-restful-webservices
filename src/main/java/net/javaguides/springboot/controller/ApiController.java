@@ -60,7 +60,7 @@ public class ApiController {
 	
 	// update user
 	@PutMapping("/{id}")
-	public User updateUser(@RequestBody User user, @PathVariable ("id") int userId) {
+	public User updateUser(@RequestBody User user, @PathVariable ("id") long userId) {
 //		this.userController.updateByNewData(userId, User)
 		 User existingUser = this.userRepository.findById(userId)
 			.orElseThrow(() -> new ResourceNotFoundException("User not found with id :" + userId));

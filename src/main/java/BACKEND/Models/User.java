@@ -142,8 +142,4 @@ public class User {
                 ", deletedAt=" + deletedAt +
                 '}';
     }
-
-    public User orElseThrow(Object o) {
-
-    }
 }
